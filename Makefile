@@ -1,22 +1,23 @@
-# Simple Makefile for the Dining Hall synchronization exercise
-
-# Toolchain configuration (override on command line as needed)
 CC ?= gcc
 CFLAGS ?= -Wall -Wextra -pedantic -O2
 THREAD_FLAGS ?= -pthread
 LDFLAGS ?=
-TARGET ?= main
-SRC ?= main.c
+TARGET ?= chatgpt-edh
+SRC ?= chatgpt-edh.c
 
-# Derived variables
 OBJ := $(SRC:.c=.o)
+
+CLAUDE = claude-edh
 
 .PHONY: all run clean distclean
 
-all: $(TARGET)
+all: $(TARGET) $(CLAUDE)
 
 $(TARGET): $(OBJ)
 	$(CC) $(THREAD_FLAGS) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
+
+$(CLAUDE): claude-edh.c
+	$(CC) $(THREAD_FLAGS) $(CFLAGS) claude-edh.c -o $(CLAUDE)
 
 %.o: %.c
 	$(CC) $(THREAD_FLAGS) $(CFLAGS) -c $< -o $@
@@ -28,4 +29,4 @@ clean:
 	rm -f $(OBJ)
 
 distclean: clean
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(CLAUDE) ${CLAUDE}.o
