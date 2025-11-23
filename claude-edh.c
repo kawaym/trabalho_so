@@ -1,15 +1,4 @@
-/**
- * Extended Dining Hall Problem - Seção 7.6.3
- * Little Book of Semaphores
- * 
- * Restrição: Um estudante nunca pode sentar sozinho na mesa
- * - Não pode invocar dine se não há ninguém na mesa E ninguém pronto para comer
- * - Não pode ficar sozinho se todos os outros saírem antes dele terminar
- * 
- * Implementação: Usando APENAS mutex e variáveis de condição (SEM semáforos)
- * 
- * Uso: ./claude-edh [num_estudantes] [tempo_max_comida] [tempo_max_jantar]
- */
+// SO: Ubuntu 24.04.3 LTS
 
 #include <stdio.h>
 #include <stdlib.h>
